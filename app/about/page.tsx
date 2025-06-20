@@ -133,7 +133,7 @@ export default function About() {
             >
               <motion.div whileHover={{ scale: 1.05, rotateY: 10 }} transition={{ duration: 0.3 }}>
                 <Image
-                  src="/placeholder.svg?height=500&width=600"
+                  src="/images/about.jpg"
                   alt="Team Victory"
                   width={600}
                   height={500}

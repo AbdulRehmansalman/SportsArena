@@ -384,10 +384,10 @@ export default function SportsArena() {
             >
               <motion.div whileHover={{ scale: 1.05, rotateY: 10 }} transition={{ duration: 0.3 }}>
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/images/Home.jpg"
                   alt="Team Action"
                   width={600}
-                  height={400}
+                  height={300}
                   className="rounded-lg shadow-2xl"
                 />
               </motion.div>

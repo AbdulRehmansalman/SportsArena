@@ -33,7 +33,7 @@ export default function News() {
       views: 15420,
       likes: 892,
       featured: true,
-      image: "championship celebration victory trophy",
+      image: "/images/MarcusThunder.webp",
     },
     {
       id: 2,
@@ -47,7 +47,7 @@ export default function News() {
       views: 8930,
       likes: 567,
       featured: false,
-      image: "athlete signing contract celebration",
+      image: "/images/signContract.jpg",
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ export default function News() {
       views: 12340,
       likes: 723,
       featured: false,
-      image: "modern sports stadium renovation architecture",
+      image: "/images/newStadiumRenovations.jpg",
     },
     {
       id: 4,
@@ -75,7 +75,7 @@ export default function News() {
       views: 9876,
       likes: 654,
       featured: false,
-      image: "young female athlete award ceremony",
+      image: "/images/Sarah.jpg",
     },
     {
       id: 5,
@@ -89,7 +89,7 @@ export default function News() {
       views: 7654,
       likes: 432,
       featured: false,
-      image: "packed stadium crowd cheering fans",
+      image: "/images/attendenceStadium.jpg",
     },
     {
       id: 6,
@@ -103,7 +103,7 @@ export default function News() {
       views: 11230,
       likes: 789,
       featured: false,
-      image: "athlete trade announcement press conference",
+      image: "/images/blockBusterTrade.jpg",
     },
   ]
 
@@ -223,7 +223,7 @@ export default function News() {
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="relative h-64 md:h-auto">
                     <Image
-                      src={`/placeholder.svg?height=400&width=600&query=${featuredArticle.image}`}
+                      src="/images/THrillingFinal.jpg"
                       alt={featuredArticle.title}
                       fill
                       className="object-cover"
@@ -327,7 +327,7 @@ export default function News() {
                 <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm overflow-hidden h-full">
                   <div className="relative h-48">
                     <Image
-                      src={`/placeholder.svg?height=300&width=400&query=${article.image}`}
+                      src={article.image}
                       alt={article.title}
                       fill
                       className="object-cover"

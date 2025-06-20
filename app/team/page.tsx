@@ -184,7 +184,7 @@ export default function Team() {
                     <div className="relative mb-4">
                       <motion.div whileHover={{ scale: 1.05 }} className="relative">
                         <Image
-                          src={`/placeholder.svg?height=300&width=300&query=athlete player ${player.name}`}
+                          src="/images/MarcusThunder.webp"
                           alt={player.name}
                           width={300}
                           height={300}
@@ -277,7 +277,7 @@ export default function Team() {
 
               <motion.div whileHover={{ scale: 1.05, rotateY: 10 }} className="relative">
                 <Image
-                  src={`/placeholder.svg?height=400&width=400&query=athlete action ${players[selectedPlayer].name}`}
+                  src="/images/MarcusThunder.webp"
                   alt={`${players[selectedPlayer].name} in action`}
                   width={400}
                   height={400}
