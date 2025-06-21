@@ -1,50 +1,68 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Trophy, Users, Calendar, MapPin, Play, Star, Zap, Target, Award, Timer, TrendingUp } from "lucide-react"
-import Image from "next/image"
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Trophy,
+  Users,
+  Calendar,
+  MapPin,
+  Play,
+  Star,
+  Zap,
+  Target,
+  Award,
+  Timer,
+  TrendingUp,
+} from "lucide-react";
+import Image from "next/image";
 
 // Animated Counter Component
-function AnimatedCounter({ end, duration = 2000 }: { end: number; duration?: number }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef(null)
-  const isInView = useInView(ref)
+function AnimatedCounter({
+  end,
+  duration = 2000,
+}: {
+  end: number;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref);
 
   useEffect(() => {
     if (isInView) {
-      let startTime: number
+      let startTime: number;
       const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime
-        const progress = Math.min((currentTime - startTime) / duration, 1)
-        setCount(Math.floor(progress * end))
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        setCount(Math.floor(progress * end));
         if (progress < 1) {
-          requestAnimationFrame(animate)
+          requestAnimationFrame(animate);
         }
-      }
-      requestAnimationFrame(animate)
+      };
+      requestAnimationFrame(animate);
     }
-  }, [isInView, end, duration])
+  }, [isInView, end, duration]);
 
-  return <span ref={ref}>{count.toLocaleString()}</span>
+  return <span ref={ref}>{count.toLocaleString()}</span>;
 }
 
 // Floating Particles Component
 function FloatingParticles() {
-  const [positions, setPositions] = useState<{ x: number; y: number }[]>([])
+  const [positions, setPositions] = useState<{ x: number; y: number }[]>([]);
 
   useEffect(() => {
     const generateParticles = () => {
       return Array.from({ length: 20 }, () => ({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-      }))
-    }
-    setPositions(generateParticles())
-  }, [])
+      }));
+    };
+    setPositions(generateParticles());
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -69,21 +87,20 @@ function FloatingParticles() {
         />
       ))}
     </div>
-  )
+  );
 }
 
-
 export default function SportsArena() {
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const stats = [
     { icon: Trophy, label: "Championships", value: 15 },
     { icon: Users, label: "Team Members", value: 250 },
     { icon: Target, label: "Goals Scored", value: 1847 },
     { icon: Award, label: "Awards Won", value: 89 },
-  ]
+  ];
 
   const upcomingGames = [
     {
@@ -107,7 +124,7 @@ export default function SportsArena() {
       venue: "Arena Stadium",
       status: "Home",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -116,13 +133,6 @@ export default function SportsArena() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <motion.div className="absolute inset-0 z-0" style={{ y, opacity }}>
-          <Image
-            src="/placeholder.svg?height=1080&width=1920"
-            alt="Sports Arena"
-            fill
-            className="object-cover"
-            priority
-          />
           <div className="absolute inset-0 bg-black/60" />
         </motion.div>
 
@@ -177,23 +187,32 @@ export default function SportsArena() {
             transition={{ delay: 1.5 }}
           >
             <motion.div
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(249, 115, 22, 0.5)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(249, 115, 22, 0.5)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg">
+              <Button
+                size="lg"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg"
+              >
                 <Play className="mr-2 h-5 w-5" />
                 Watch Highlights
               </Button>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 255, 255, 0.2)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(255, 255, 255, 0.2)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg"
+                className="border-white text-black hover:bg-white hover:text-black px-8 py-4 text-lg"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 View Schedule
@@ -285,7 +304,8 @@ export default function SportsArena() {
             repeatType: "reverse",
           }}
           style={{
-            backgroundImage: "radial-gradient(circle, orange 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, orange 1px, transparent 1px)",
             backgroundSize: "50px 50px",
           }}
         />
@@ -319,23 +339,38 @@ export default function SportsArena() {
                     <motion.div
                       className="flex justify-between items-start mb-4"
                       animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      transition={{
+                        duration: 2,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
                     >
                       <Badge
-                        variant={game.status === "Home" ? "default" : "secondary"}
-                        className={game.status === "Home" ? "bg-green-600" : "bg-blue-600"}
+                        variant={
+                          game.status === "Home" ? "default" : "secondary"
+                        }
+                        className={
+                          game.status === "Home"
+                            ? "bg-green-600"
+                            : "bg-blue-600"
+                        }
                       >
                         {game.status}
                       </Badge>
                       <motion.div
                         animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                        transition={{
+                          duration: 4,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "linear",
+                        }}
                       >
                         <Zap className="w-6 h-6 text-orange-500" />
                       </motion.div>
                     </motion.div>
 
-                    <h3 className="text-2xl font-bold mb-2 text-white">vs {game.opponent}</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-white">
+                      vs {game.opponent}
+                    </h3>
 
                     <div className="space-y-2 text-gray-300">
                       <div className="flex items-center">
@@ -352,8 +387,14 @@ export default function SportsArena() {
                       </div>
                     </div>
 
-                    <motion.div className="mt-6" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button className="w-full bg-orange-600 hover:bg-orange-700">Get Tickets</Button>
+                    <motion.div
+                      className="mt-6"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button className="w-full bg-orange-600 hover:bg-orange-700">
+                        Get Tickets
+                      </Button>
                     </motion.div>
                   </CardContent>
                 </Card>
@@ -382,7 +423,10 @@ export default function SportsArena() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <motion.div whileHover={{ scale: 1.05, rotateY: 10 }} transition={{ duration: 0.3 }}>
+              <motion.div
+                whileHover={{ scale: 1.05, rotateY: 10 }}
+                transition={{ duration: 0.3 }}
+              >
                 <Image
                   src="/images/Home.jpg"
                   alt="Team Action"
@@ -422,9 +466,10 @@ export default function SportsArena() {
               </motion.h3>
 
               <p className="text-gray-300 text-lg leading-relaxed">
-                Our team has dominated the arena with unprecedented skill and determination. From rookie sensations to
-                veteran legends, every player brings their A-game to deliver spectacular performances that keep fans on
-                the edge of their seats.
+                Our team has dominated the arena with unprecedented skill and
+                determination. From rookie sensations to veteran legends, every
+                player brings their A-game to deliver spectacular performances
+                that keep fans on the edge of their seats.
               </p>
 
               <motion.div
@@ -433,7 +478,10 @@ export default function SportsArena() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="bg-orange-600 p-3 rounded-full">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="bg-orange-600 p-3 rounded-full"
+                >
                   <TrendingUp className="w-6 h-6 text-white" />
                 </motion.div>
                 <div>
@@ -451,13 +499,24 @@ export default function SportsArena() {
         <motion.div
           className="absolute inset-0"
           animate={{
-            background: ["linear-gradient(45deg, #1f2937, #111827)", "linear-gradient(45deg, #111827, #1f2937)"],
+            background: [
+              "linear-gradient(45deg, #1f2937, #111827)",
+              "linear-gradient(45deg, #111827, #1f2937)",
+            ],
           }}
-          transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+          transition={{
+            duration: 4,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
+          }}
         />
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <motion.div
               className="mb-6"
               animate={{
@@ -473,7 +532,9 @@ export default function SportsArena() {
             </motion.div>
 
             <h3 className="text-3xl font-bold mb-4">ARENA LEGENDS</h3>
-            <p className="text-gray-400 mb-8">Champions Today, Legends Forever</p>
+            <p className="text-gray-400 mb-8">
+              Champions Today, Legends Forever
+            </p>
 
             <motion.div
               className="text-gray-500"
@@ -486,5 +547,5 @@ export default function SportsArena() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
